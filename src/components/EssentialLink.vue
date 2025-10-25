@@ -1,44 +1,28 @@
 <template>
   <q-item
+    :to="to"
     clickable
-    tag="a"
-    target="_blank"
-    :href="props.link"
+    v-ripple
+    :exact="!external"
+    class="q-my-xs"
   >
-    <q-item-section
-      v-if="props.icon"
-      avatar
-    >
-      <q-icon :name="props.icon" />
+    <q-item-section avatar>
+      <q-icon :name="icon" :color="iconColor || 'primary'" />
     </q-item-section>
-
     <q-item-section>
-      <q-item-label>{{ props.title }}</q-item-label>
-      <q-item-label caption>{{ props.caption }}</q-item-label>
+      <q-item-label class="text-weight-medium">{{ title }}</q-item-label>
+      <q-item-label caption>{{ caption }}</q-item-label>
     </q-item-section>
   </q-item>
 </template>
 
 <script setup>
-const props = defineProps({
-  title: {
-    type: String,
-    required: true
-  },
-
-  caption: {
-    type: String,
-    default: ''
-  },
-
-  link: {
-    type: String,
-    default: '#'
-  },
-
-  icon: {
-    type: String,
-    default: ''
-  }
+defineProps({
+  title: String,
+  caption: String,
+  icon: String,
+  to: String,
+  external: Boolean,
+  iconColor: String
 })
 </script>
